@@ -1,0 +1,24 @@
+{
+  "name": "sana_natori_dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/euxn23/sana_natori_dev.git",
+  "author": "euxn23 <euxn23@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "next",
+    "build": "rm -rf .next out && next build && next export"
+  },
+  "dependencies": {
+    "@types/node": "^13.7.7",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
