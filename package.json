@@ -9,7 +9,7 @@
     "start": "next",
     "build": "yarn build:twitter && yarn build:next",
     "build:next": "rm -rf .next out && next build && next export",
-    "build:twitter": "rm -rf src/statuses.json && ts-node -P tsconfig.bin.json src/bin/main.ts"
+    "build:twitter": "rm -rf src/tweets.json && ts-node -P tsconfig.bin.json src/bin/main.ts"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.0",

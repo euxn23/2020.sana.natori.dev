@@ -17,11 +17,11 @@ async function main() {
     access_token_key: ACCESS_TOKEN_KEY!,
     access_token_secret: ACCESS_TOKEN_SECRET!
   });
-  const statuses = await searchTweetByQuery(client);
+  const tweets = await searchTweetByQuery(client);
 
   await fs.writeFile(
-    path.resolve(process.cwd(), 'src/statuses.json'),
-    JSON.stringify(statuses)
+    path.resolve(process.cwd(), 'src/tweets.json'),
+    JSON.stringify(tweets)
   );
 }
 

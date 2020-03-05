@@ -1,3 +1,3 @@
-import statuses from './statuses.json';
+import tweets from './tweets.json';
 
-export type Statuses = typeof statuses;
+export type Statuses = typeof tweets;

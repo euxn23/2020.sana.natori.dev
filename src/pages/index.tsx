@@ -3,11 +3,11 @@ import { Statuses } from '../types';
 import { extractNwontart, extractUrl } from '../functions';
 
 type Props = {
-  statuses: Statuses;
+  tweets: Statuses;
 };
 
-export default function Index({ statuses }: Props) {
-  const mediaTweets = statuses.filter(status => status.entities.media);
+export default function Index({ tweets }: Props) {
+  const mediaTweets = tweets.filter(tweet => tweet.entities.media);
 
   return (
     <div className="flex">
@@ -70,34 +70,34 @@ export default function Index({ statuses }: Props) {
         <div>
           <div className="flex justify-center">
             <div className="container">
-              {statuses.map(status => {
+              {tweets.map(tweet => {
                 return (
                   <a
-                    href={`https://twitter.com/${status.user.screen_name}/status/${status.id_str}`}
+                    href={`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <div
-                      key={status.id_str}
+                      key={tweet.id_str}
                       className="flex items-center m-1 p-1 shadow-lg cursor-pointer transition ease-in-out hover:bg-red-100 transform hover:scale-110"
                     >
                       <div className="h-12 w-12">
                         <img
-                          src={status.user.profile_image_url_https}
+                          src={tweet.user.profile_image_url_https}
                           className="object-contain h-full w-full"
                         />
                       </div>
                       <div className="pl-1 w-full">
                         <p className="text-gray-900 font-semibold">
                           <a
-                            href={`https://twitter.com/${status.user.screen_name}`}
+                            href={`https://twitter.com/${tweet.user.screen_name}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            {status.user.name} @{status.user.screen_name}
+                            {tweet.user.name} @{tweet.user.screen_name}
                           </a>
                         </p>
-                        <p className="text-gray-800">{status.text}</p>
+                        <p className="text-gray-800">{tweet.text}</p>
                       </div>
                     </div>
                   </a>
@@ -132,7 +132,7 @@ export default function Index({ statuses }: Props) {
 }
 
 Index.getInitialProps = async () => {
-  const { default: statuses } = await import('../statuses.json');
+  const { default: tweets } = await import('../tweets.json');
 
-  return { statuses: statuses };
+  return { tweets };
 };

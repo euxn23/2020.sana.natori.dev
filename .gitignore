@@ -1,4 +1,4 @@
 node_modules
 .next
 out
-src/statuses.json
+src/tweets.json
