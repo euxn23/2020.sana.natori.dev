@@ -26,7 +26,7 @@ export default function Index({ statuses }: Props) {
                     >
                       <img
                         className="object-contain h-full w-full"
-                        src={media.media_url}
+                        src={media.media_url_https}
                       />
                       <div className="absolute bottom-0 z-10 h-24 w-full p-2 opacity-75 bg-red-400">
                         <div>
@@ -57,7 +57,7 @@ export default function Index({ statuses }: Props) {
                     >
                       <div className="h-12 w-12">
                         <img
-                          src={status.user.profile_image_url}
+                          src={status.user.profile_image_url_https}
                           className="object-contain h-full w-full"
                         />
                       </div>
