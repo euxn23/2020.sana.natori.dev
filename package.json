@@ -7,18 +7,26 @@
   "license": "MIT",
   "scripts": {
     "start": "next",
-    "build": "rm -rf .next out && next build && next export"
+    "build": "yarn build:twitter && yarn build:next",
+    "build:next": "rm -rf .next out && next build && next export",
+    "build:twitter": "rm -rf src/statuses.json && ts-node -P tsconfig.bin.json src/bin/main.ts"
   },
   "dependencies": {
     "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/twitter": "^1.7.0",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^9.2.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "ts-node": "^8.6.2",
+    "twitter": "^1.7.1",
+    "twitter-d": "^0.4.0",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "http-server": "^0.12.1",
     "prettier": "^1.19.1"
   }
 }
