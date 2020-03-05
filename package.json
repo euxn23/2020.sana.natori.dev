@@ -12,14 +12,18 @@
     "build:twitter": "rm -rf src/statuses.json && ts-node -P tsconfig.bin.json src/bin/main.ts"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/twitter": "^1.7.0",
+    "autoprefixer": "^9.7.4",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.2.2",
+    "postcss-import": "^12.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "tailwindcss": "^1.2.0",
     "ts-node": "^8.6.2",
     "twitter": "^1.7.1",
     "twitter-d": "^0.4.0",

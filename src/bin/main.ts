@@ -1,11 +1,9 @@
-import { searchTweetRecursively } from '../functions';
+import { searchTweetByQuery } from '../functions';
 import Twitter from 'twitter';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 
 async function main() {
-  const sinceId = '1235506165779324928';
-
   const {
     CONSUMER_KEY,
     CONSUMER_SECRET,
@@ -19,7 +17,7 @@ async function main() {
     access_token_key: ACCESS_TOKEN_KEY!,
     access_token_secret: ACCESS_TOKEN_SECRET!
   });
-  const statuses = await searchTweetRecursively(client, sinceId);
+  const statuses = await searchTweetByQuery(client);
 
   await fs.writeFile(
     path.resolve(process.cwd(), 'src/statuses.json'),
