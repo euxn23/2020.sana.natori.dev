@@ -7,9 +7,7 @@ type Props = {
 };
 
 export default function Index({ statuses }: Props) {
-  const mediaTweets = statuses
-    .filter(status => status.entities.media)
-    .sort(() => Math.random() - 0.5);
+  const mediaTweets = statuses.filter(status => status.entities.media);
 
   return (
     <div className="flex">
@@ -19,55 +17,53 @@ export default function Index({ statuses }: Props) {
             className="flex w-full p-1 overflow-x-scroll items-center"
             style={{ height: '24rem' }}
           >
-            {mediaTweets.map(tw => {
-              return (
-                <>
-                  {tw.entities.media?.map(media => (
-                    <div
-                      key={media.id_str}
-                      className="flex relative h-64 w-64 m-1 cursor-pointer transition duration-200 ease-in-out transform hover:scale-125"
-                      style={{ minWidth: '16rem', maxWidth: '16rem' }}
+            {mediaTweets.map(tweet => (
+              <>
+                {tweet.entities.media!.map(media => (
+                  <div
+                    key={media.id_str}
+                    className="flex relative h-64 w-64 m-1 cursor-pointer transition duration-200 ease-in-out transform hover:scale-125"
+                    style={{ minWidth: '16rem', maxWidth: '16rem' }}
+                  >
+                    <a
+                      href={`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={`https://twitter.com/${tw.user.screen_name}/status/${tw.id_str}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="object-contain h-full w-full"
-                          src={media.media_url_https}
-                        />
-                        <div className="absolute bottom-0 z-10 h-24 w-full p-2 opacity-75 bg-red-400">
-                          <div>
-                            <p className="text-xs">
-                              {extractNwontart(extractUrl(tw.text))}
-                            </p>
-                          </div>
+                      <img
+                        className="object-contain h-full w-full"
+                        src={media.media_url_https}
+                      />
+                      <div className="absolute bottom-0 z-10 h-24 w-full p-2 opacity-75 bg-red-400">
+                        <div>
+                          <p className="text-xs">
+                            {extractNwontart(extractUrl(tweet.text))}
+                          </p>
                         </div>
-                        <div className="flex items-end justify-end w-full absolute bottom-0 z-20">
-                          <div className="pr-1">
-                            <p className="text-xs">{tw.user.name}</p>
-                            <p className="text-xs">@{tw.user.screen_name}</p>
-                          </div>
-                          <div className="h-8 w-8 m-1">
-                            <a
-                              href={`https://twitter.com/${tw.user.screen_name}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                src={tw.user.profile_image_url_https}
-                                className="object-contain h-full w-full transform hover:scale-110"
-                              />
-                            </a>
-                          </div>
+                      </div>
+                      <div className="flex items-end justify-end w-full absolute bottom-0 z-20">
+                        <div className="pr-1">
+                          <p className="text-xs">{tweet.user.name}</p>
+                          <p className="text-xs">@{tweet.user.screen_name}</p>
                         </div>
-                      </a>
-                    </div>
-                  ))}
-                </>
-              );
-            })}
+                        <div className="h-8 w-8 m-1">
+                          <a
+                            href={`https://twitter.com/${tweet.user.screen_name}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={tweet.user.profile_image_url_https}
+                              className="object-contain h-full w-full transform hover:scale-110"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </>
+            ))}
           </div>
         </div>
 
@@ -138,5 +134,5 @@ export default function Index({ statuses }: Props) {
 Index.getInitialProps = async () => {
   const { default: statuses } = await import('../statuses.json');
 
-  return { statuses };
+  return { statuses: statuses };
 };
