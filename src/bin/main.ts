@@ -1,4 +1,4 @@
-import { searchTweetByQuery } from '../functions';
+import { searchTweetByQuery } from './functions';
 import Twitter from 'twitter';
 import { promises as fs } from 'fs';
 import * as path from 'path';

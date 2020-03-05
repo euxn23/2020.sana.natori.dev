@@ -1,5 +1,6 @@
 import React from 'react';
 import { Statuses } from '../types';
+import { extractNwontart, extractUrl } from '../functions';
 
 type Props = {
   statuses: Statuses;
