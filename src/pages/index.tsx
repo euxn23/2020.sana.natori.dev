@@ -14,26 +14,55 @@ export default function Index({ statuses }: Props) {
   return (
     <div className="flex">
       <div>
-        <div className="p-8" style={{ width: '99vw' }}>
-          <div className="flex w-full p-1 overflow-x-scroll">
+        <div className="p-8 w-screen">
+          <div
+            className="flex w-full p-1 overflow-x-scroll items-center"
+            style={{ height: '24rem' }}
+          >
             {mediaTweets.map(tw => {
               return (
                 <>
                   {tw.entities.media?.map(media => (
                     <div
                       key={media.id_str}
-                      className="flex relative h-64 w-64 mr-1 ml-1"
+                      className="flex relative h-64 w-64 m-1 cursor-pointer transition duration-200 ease-in-out transform hover:scale-125"
                       style={{ minWidth: '16rem', maxWidth: '16rem' }}
                     >
-                      <img
-                        className="object-contain h-full w-full"
-                        src={media.media_url_https}
-                      />
-                      <div className="absolute bottom-0 z-10 h-24 w-full p-2 opacity-75 bg-red-400">
-                        <div>
-                          <p className="text-xs">{tw.text}</p>
+                      <a
+                        href={`https://twitter.com/${tw.user.screen_name}/status/${tw.id_str}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="object-contain h-full w-full"
+                          src={media.media_url_https}
+                        />
+                        <div className="absolute bottom-0 z-10 h-24 w-full p-2 opacity-75 bg-red-400">
+                          <div>
+                            <p className="text-xs">
+                              {extractNwontart(extractUrl(tw.text))}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                        <div className="flex items-end justify-end w-full absolute bottom-0 z-20">
+                          <div className="pr-1">
+                            <p className="text-xs">{tw.user.name}</p>
+                            <p className="text-xs">@{tw.user.screen_name}</p>
+                          </div>
+                          <div className="h-8 w-8 m-1">
+                            <a
+                              href={`https://twitter.com/${tw.user.screen_name}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img
+                                src={tw.user.profile_image_url_https}
+                                className="object-contain h-full w-full transform hover:scale-110"
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      </a>
                     </div>
                   ))}
                 </>
@@ -54,7 +83,7 @@ export default function Index({ statuses }: Props) {
                   >
                     <div
                       key={status.id_str}
-                      className="flex items-center p-1 shadow-lg hover:bg-red-100 cursor-pointer"
+                      className="flex items-center m-1 p-1 shadow-lg cursor-pointer transition ease-in-out hover:bg-red-100 transform hover:scale-110"
                     >
                       <div className="h-12 w-12">
                         <img
