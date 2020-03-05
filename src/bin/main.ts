@@ -21,7 +21,7 @@ async function main() {
 
   await fs.writeFile(
     path.resolve(process.cwd(), 'src/tweets.json'),
-    JSON.stringify(tweets)
+    JSON.stringify(tweets.sort(() => Math.random() - 0.5))
   );
 }
 
