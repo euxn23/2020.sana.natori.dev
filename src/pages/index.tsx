@@ -70,8 +70,8 @@ export default function Index({ tweets }: Props) {
 
   return (
     <div className="flex">
-      <div>
-        <div className="p-8 w-screen">
+      <div className="w-full">
+        <div className="p-8 w-full">
           <div className="flex w-full p-1 items-center">
             {/*<div>*/}
             <Carousel
