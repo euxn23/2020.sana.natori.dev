@@ -20,7 +20,7 @@ export async function searchTweetRecursively(
   });
   const statuses: TwitterD.Status[] = response.statuses;
 
-  return statuses.length !== 0 && counter < 50
+  return statuses.length !== 0 && counter < 100
     ? [
         ...statuses,
         ...(await searchTweetRecursively(
