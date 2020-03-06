@@ -40,7 +40,9 @@ export async function searchTweetByQuery(client: Twitter) {
     { query: '#ヌォンタート', ...baseParam },
     { query: '#名取さな誕生日おめでとう', ...baseParam },
     { query: '#名取誕生日おめでとう', ...baseParam },
-    { query: '#さなちゃん誕生日おめでとう', ...baseParam }
+    { query: '#さなちゃん誕生日おめでとう', ...baseParam },
+    { query: '#名取さな', ...baseParam },
+    { query: '#名取爆誕', ...baseParam }
   ];
 
   const sinceId = '-1';
