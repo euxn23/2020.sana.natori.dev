@@ -17,3 +17,6 @@ export function extractNwontart(text: string): string {
     return text;
   }
 }
+export async function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
