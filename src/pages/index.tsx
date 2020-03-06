@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Carousel from 'react-multi-carousel';
 import { Statuses } from '../types';
-import { extractNwontart, extractUrl, sleep } from '../functions';
+import { extractNwontart, extractUrl } from '../functions';
 
 type Props = {
   tweets: Statuses;
@@ -9,9 +9,7 @@ type Props = {
 
 export default function Index({ tweets }: Props) {
   const mediaTweets = tweets.filter(tweet => tweet.entities.media);
-
-  let carouselInstance: Carousel | null = null;
-  const [slideSpeed, setSlideSpeed] = useState(100);
+  const nonMediaTweets = tweets.filter(tweet => !tweet.entities.media);
 
   const carouselOptions = {
     responsive: {
@@ -38,48 +36,19 @@ export default function Index({ tweets }: Props) {
     arrows: false,
     infinite: true,
     autoPlay: true,
-    autoPlaySpeed: 1000,
-    slidesToSlide: slideSpeed,
+    autoPlaySpeed: 2000,
+    slidesToSlide: 1,
     containerClass: 'carousel-container',
-    customTransition: 'transform 1000ms linear',
+    customTransition: 'transform 2000ms linear',
     ssr: true
   } as const;
-
-  useEffect(() => {
-    Promise.resolve().then(async () => {
-      await sleep(1000);
-      setSlideSpeed(50);
-      await sleep(200);
-      setSlideSpeed(30);
-      await sleep(200);
-      setSlideSpeed(21);
-      await sleep(200);
-      setSlideSpeed(13);
-      await sleep(200);
-      setSlideSpeed(8);
-      await sleep(200);
-      setSlideSpeed(5);
-      await sleep(200);
-      setSlideSpeed(3);
-      await sleep(200);
-      setSlideSpeed(2);
-      await sleep(200);
-      setSlideSpeed(1);
-    });
-  }, [carouselInstance]);
 
   return (
     <div className="flex">
       <div className="w-full">
         <div className="p-8 w-full">
           <div className="flex w-full p-1 items-center">
-            {/*<div>*/}
-            <Carousel
-              {...carouselOptions}
-              ref={el => {
-                carouselInstance = el;
-              }}
-            >
+            <Carousel {...carouselOptions}>
               {mediaTweets.map(tweet => (
                 <div
                   key={tweet.entities.media![0].id_str}
@@ -130,39 +99,37 @@ export default function Index({ tweets }: Props) {
         <div>
           <div className="flex justify-center">
             <div className="container">
-              {tweets.map(tweet => {
-                return (
-                  <a
-                    href={`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+              {nonMediaTweets.map(tweet => (
+                <a
+                  href={`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div
+                    key={tweet.id_str}
+                    className="flex items-center m-1 p-1 shadow-lg cursor-pointer transition ease-in-out hover:bg-red-100 transform hover:scale-110"
                   >
-                    <div
-                      key={tweet.id_str}
-                      className="flex items-center m-1 p-1 shadow-lg cursor-pointer transition ease-in-out hover:bg-red-100 transform hover:scale-110"
-                    >
-                      <div className="h-12 w-12">
-                        <img
-                          src={tweet.user.profile_image_url_https}
-                          className="object-contain h-full w-full"
-                        />
-                      </div>
-                      <div className="pl-1 w-full">
-                        <p className="text-gray-900 font-semibold">
-                          <a
-                            href={`https://twitter.com/${tweet.user.screen_name}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {tweet.user.name} @{tweet.user.screen_name}
-                          </a>
-                        </p>
-                        <p className="text-gray-800">{tweet.text}</p>
-                      </div>
+                    <div className="h-12 w-12">
+                      <img
+                        src={tweet.user.profile_image_url_https}
+                        className="object-contain h-full w-full"
+                      />
                     </div>
-                  </a>
-                );
-              })}
+                    <div className="pl-1 w-full">
+                      <p className="text-gray-900 font-semibold">
+                        <a
+                          href={`https://twitter.com/${tweet.user.screen_name}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {tweet.user.name} @{tweet.user.screen_name}
+                        </a>
+                      </p>
+                      <p className="text-gray-800">{tweet.text}</p>
+                    </div>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </div>
