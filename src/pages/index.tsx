@@ -133,14 +133,11 @@ export default function Index({ tweets }: Props) {
             </div>
           </div>
         </div>
+
+        <div className="h-24"></div>
         <div className="fixed bottom-0 w-full flex justify-end bg-red-400 opacity-75">
           <div className="p-2">
-            {[
-              'ヌォンタート',
-              '名取さな誕生日おめでとう',
-              '名取誕生日おめでとう',
-              'さなちゃん誕生日おめでとう'
-            ].map(tag => (
+            {['ヌォンタート', '名取爆誕'].map(tag => (
               <div>
                 <p>
                   <a
