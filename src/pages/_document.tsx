@@ -25,6 +25,8 @@ export default class MyDocument extends Document {
             content="https://sana.natori.dev/images/thumbnail.png"
           />
           <link ref="shortcut icon" href="/favicon.ico" />
+
+          <title>ヌォンタート展覧会</title>
         </Head>
         <body>
           <Main />
