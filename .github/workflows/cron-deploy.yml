@@ -2,7 +2,7 @@ name: cron-deploy
 
 on:
   schedule:
-    - cron: '*/20 * * * *'
+    - cron: '* 0,3,18,21 * * *'
 
 jobs:
   build:
