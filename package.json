@@ -19,7 +19,7 @@
     "@types/twitter": "^1.7.0",
     "autoprefixer": "^9.7.4",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.2.2",
+    "next": "^9.3.2",
     "postcss-import": "^12.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
